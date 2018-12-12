@@ -1,0 +1,42 @@
+<div class="ui word-counter container">
+  <div class="ui segment">
+    <div class="ui form {{if error "error"}}">
+      <div class="field">
+        <label>Text</label>
+        {{textarea
+          value=wordCountText
+          rows=20
+          placeholder="Insert text here"
+        }}
+      </div>
+      <div class="field">
+        <div class="ui error message">
+          <div class="header">{{error.header}}</div>
+          <p>{{error.message}}</p>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui primary {{if isRunning "loading"}} button" onclick={{action "countWords"}}>Start</div>
+        <div class="ui secondary button" onclick={{action "clearWordCounter"}}>Clear</div>
+      </div>
+      <div class="field">
+        <table class="ui collapsing celled table">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each wordArray as |word|}}
+              <tr>
+                <td data-label="Label">{{word.label}}</td>
+                <td data-label="Count">{{word.count}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
